@@ -1,0 +1,29 @@
+#Manually starting and stopping Cassandra
+/usr/sbin/cassandra -h
+-f ; start Cassandra in foreground
+-p Log process ID in named file
+-v print the version
+; look for a message : Starting Listening for CQL clients on
+; is  a sign that Cassandra is starting up
+; kill <pid> does a gracefull shutdown
+; the difference between System.log and commitlog
+Ssytem.log: system state log file, duplicates stdout, configurable by logging level.
+Commit.log: table-specific files used during INSERT and UPDATE operations.
+
+
+
+sudo service cassandra start
+sudo service cassandra stop
+
+======================Cassandra Cluster Manager=================
+What is the Cassandra Cluster Manager(CCN)?
+. Creates and manages multi-node clusters on a local machine.
+. useful for configuring development and test clusters
+. communicates with localhost only
+. not used fo configuring production clusters
+. it is open source created by Sylvian Lebresne
+. it requires Python2.7+, PyYAML, Ant
+. source code @ https://github.com/pcmanus/ccm
+. http://www.datastax.com/dev/blog/ccm-a-development-tool-for-creating-local-cassandra-clusters.
+It is not part of the Cassandra standard utilities and tools
+
