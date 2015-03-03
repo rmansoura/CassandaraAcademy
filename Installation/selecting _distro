@@ -1,0 +1,87 @@
+requirements:
+64 bit os
+python 2.7
+openJDK 1.7 or Oracle JDK 1.7
+Cassandra Cluster Manager (CCM)
+* student-files.zip
+- choose either OSS (DSC) or Enterprise Editions (DSE)
+DataStax Enterprise + OpsCenter, DeveCenter, and Drivers
+    http://www.datastax.com/download.
+    http://planetcassandra.org/cassandra/ ; this is the community edition
+  http://cassandra.apache.org/download/
+  https://github.com/apache/cassandra
+    ==========================
+
+    Setting up a lab environment
+    ===========================
+    *******************************This can be scripted****************
+ echo "deb http://debian.datastax.com/community stable main" | sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list
+ 
+   curl -L http://debian.datastax.com/debian/repo_key | sudo apt-key add -
+   sudo apt-get update
+  sudo apt-get install dsc20=2.0.11-1 cassandra=2.0.11
+   sudo service cassandra stop
+   sudo rm -rf /var/lib/cassandra/data/system/*
+************************************************************************
+
+http://www.datastax.com/documentation/cassandra/2.0/cassandra/install/installDeb_t.html
+==========================================================================
+II key files 
+==============
+
+. data directories  /var/lib/cassandra
+. log files /var/log/cassandra
+. configuration files /etc/cassandra
+. binaries /usr/bin; /usr/sbin; /etc/inid.d
+ . Runtime files  /var/run/cassandra
+ . Environment settings  /usr/share/assandra
+ .JAR files /usr/share/cassandra/lib
+
+
+.cassandra.yaml is the primary config file for each instance
+.cassandra-env.sh: java environment config
+.log4j-server.properties: log level and location settings.
+.cassandra-rackdc.properties: config to set the Rack and Data Center to which this Node belongs.
+.cassandra-topology.properties: config IP addressing for Racks and Data Centers in this cluster
+
+bin/cassandra-in.sh : JAVA_HOME, CASANDRA_CONF, CLASSPATH
+
+* Read the Docs  www.datastax.com/docs
+in the /usr/bin folder we have cassandra binaries.
+ cassandra, nodetool, csqlsh
+ cassandra-stress ; load testing utility
+ in /etc/cassandra, we have
+ cassandra.yaml, cassandra-env.sh, cassandra-topology, log4j-server.properties.
+ =====================================================
+ Configuring a Cassandra node.
+ ---------------------------
+ Terminology:
+ Cassandra cluster: peer to peer set of nodes with no single point of failure.
+ Node: one Cassandra instance ( resding on a single vm or physical server)
+ Partition:one unit of data on a node
+ Rack: O logical set of nodes
+ Data Center: a logical set of racks
+ Cluster: the full set of nodes which map to a single complete token ring.
+
+ /etc/cassandra/cassandra.yaml file
+
+  cluster_name(default: 'Test Cluster')
+  listen_address(default:localhost)
+  commitlog_directory(default:/var/lib/cassandra/commitlog)
+  data_file_directories(default:/var/lib/cassandra/data)
+  saved_caches_directory(default:/var/lib/cassandra/saved_caches)
+  rpc_address / rpc_port (default:localhost / 91600)
+  native_trasport_port (default:9042)
+  ========================================
+  cassandra-en.sh
+
+   jVM Heap Size settings
+    MAX_HEA_SIZE="value"
+       . max recommended  is 8G due to limitation in gc
+     HEAP_NEWSIZE="value"
+     	. set to 1/4 of MAX_HEAD_SIZE
+
+=====================================
+
+
+
