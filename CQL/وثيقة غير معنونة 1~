@@ -1,0 +1,71 @@
+CQL:Cassandra Query Language
+    is teh primary interface to the Cassandra DBMS: cqlsh, DevCenter, native drivers
+    . Modeleted after SQL for familiarity
+    . Data definition and manipulation languge (DDL and DML)
+     create, alter, grant, revoke, drop,use
+     seletct, insert update delete truncate batch
+     . data types [ blob, boolean, decimal, double, float, int, text, varchar, timestamp, uuid, timeuuid, counter
+     . set, list, map [cassandra parition)
+     .No table joins -> Query driven design
+     
+     
+CQLsh: is an interactive utility
+ cdqlsh [optins] [host [port]]
+ 
+  -k
+  -f [file_name]
+  -u [user] - [password]
+  
+  . CQL shell is a Cassandra capability, not restricted to cqlsh
+  . CQL shell command may only be used with cqlsh
+  
+ Command
+     CAPTURE, CONSISTENCY, COPY, EXIT, SHOW, SOURCE, TRACING
+     
+     /usr/bin/cqlsh  ; launch cqlsh
+     
+     ccm node2 cqlsh
+     ============================
+     Loading an external file into cqlsh
+     HELP SOURCE;
+     
+     the source command gets if file path
+     from the directory the cqlsh is launched from.
+     
+     use the show and describe commands to get info about
+     node
+     show host;
+     show version;
+     describe keyspaces;
+     describe keyspace musicdb;
+     describe tables;
+     use musicdb;
+     describe tablename;
+     ========================
+     Copying external data into tables, for development
+     ---------------------------
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
